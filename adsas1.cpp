@@ -73,4 +73,29 @@ int main(){
 		cout<<"\n6.exit";
 		cout<<"\nenter your choice: "<<endl;
 		cin>>choice;
-		switch
+		switch(choice){
+			case 1:
+			for(i=0;i<n;i++){
+				b[i].accept();
+			}
+			case 2:
+			for(i=0;i<n;i++){
+				b[i].display();
+			}
+			case 3:
+			for(i=0;i<n;i++){
+				b[i].search();
+			}
+			case 4:
+			for(i=0;i<n;i++){
+				b[i].update();
+			}
+			case 5:
+			for(i=0;i<n;i++){
+				b[i].delete();
+			}
+			case 6:
+			exit;
+			default:
+		}while(choice!=6);
+		}
