@@ -1,8 +1,9 @@
 #include<iostream>
+#include <cstring>
 using namespace std;
 class lms{
 	int book_id,price,i,n;
-	char *title,*auther,*pub,*isbn_no;
+	char *title,*author,*pub,*isbn_no;
 	public:
 	void accept();
 	void display();
@@ -12,11 +13,21 @@ class lms{
 }b[100];
 
 void lms::accept(){
-	cout<<"enter the book_id,price,title,author,pub,isbn number :"<<endl;
-	cin>>book_id>>price>>title>>auther>>pub>>isbn_no;
+    cout << "Enter the book_id, price, title, author, publisher, isbn number: " << endl;
+    scanf("%d %d", &book_id, &price);
+
+    title = new char[50];
+    author = new char[50];
+    pub = new char[50];
+    isbn_no = new char[20];
+
+    scanf("%s", title);
+    scanf("%s", author);
+    scanf("%s", pub);
+    scanf("%s", isbn_no);
 }
 void lms::display(){
-	cout<<"\n"<<book_id<<"\t"<<price<<"\t"<<title<<"\t"<<auther<<"\t"<<pub<<"\t"<<isbn_no<<endl;
+	cout<<"\n"<<book_id<<"\t"<<price<<"\t"<<title<<"\t"<<author<<"\t"<<pub<<"\t"<<isbn_no<<endl;
 	}
 void lms::search(){
 	int f=0;
@@ -35,35 +46,47 @@ void lms::search(){
 	}
 }
 void lms::update(){
-	cout<<"Enter the book id which you want to update: ";
-	cin>>book_id;
-	if(book_id==b[i].book_id){
-		cout<<"enter book info which you want to update:";
-		cout<<"book id";
-		cin>>b[i].price;
-		cout<<"title";
-		cin>>b[i].auther;
-		cout<<"publsher";
-		cin>>b[i].pub;
-	}
+	cout << "Enter the book id you want to update: ";
+    scanf("%d", &book_id);
+    for (int i = 0; i < n; i++) {
+        if (book_id == b[i].book_id) {
+            cout << "Enter updated information: " << endl;
+            cout << "Price: ";
+            scanf("%d", &b[i].price);
+            cout << "Title: ";
+            scanf("%s", b[i].title);
+            cout << "Author: ";
+            scanf("%s", b[i].author);
+            cout << "Publisher: ";
+            scanf("%s", b[i].pub);
+            break;
+        }
+    }
+	
 }
 void lms::Delete(){
-	cout<<"Enter the book id :";
-	cin>>book_id;
-	for(i=0;i<n;i++){
-		if(book_id==b[i].book_id){
-			do{
-				b[i]=b[i+1];
-				i+1;
-			}
-			while(i<n);
-			n--;
-			break;
-		}
-	}
+	
+    cout << "Enter the book id to delete: ";
+    scanf("%d", &book_id);
+    for (int i = 0; i < n; i++) {
+        if (book_id == b[i].book_id) {
+            delete[] b[i].title;
+            delete[] b[i].author;
+            delete[] b[i].pub;
+            delete[] b[i].isbn_no;
+
+            do {
+                b[i] = b[i + 1];
+                i++;
+            } while (i < n);
+            n--;
+            cout << "Book deleted successfully." << endl;
+            break;
+        }
+    }
 }
 int main(){
-	int choice,i;
+	int choice,i,n=0;
 	do{
 		cout<<"\n1.accept";
 		cout<<"\n2.display";
@@ -72,32 +95,43 @@ int main(){
 		cout<<"\n5.delete";
 		cout<<"\n6.exit";
 		cout<<"\nenter your choice: "<<endl;
-		cin>>choice;
-		switch(choice){
-			case 1:
-			for(i=0;i<n;i++){
-				b[i].accept();
-			}
-			case 2:
-			for(i=0;i<n;i++){
-				b[i].display();
-			}
-			case 3:
-			for(i=0;i<n;i++){
-				b[i].search();
-			}
-			case 4:
-			for(i=0;i<n;i++){
-				b[i].update();
-			}
-			case 5:
-			for(i=0;i<n;i++){
-				b[i].Delete();
-			}
-			case 6:
-			exit;
-			default:
-		}while(choice!=6);
-	}
+		scanf("%d", &choice);
 
+        switch (choice) {
+            case 1:
+                if (n < 100) {
+                    b[n].accept();
+                    n++;
+                } else {
+                    cout << "Library is full. Cannot accept more books." << endl;
+                }
+                break;
+            case 2:
+                for (int i = 0; i < n; i++) {
+                    b[i].display();
+                }
+                break;
+            case 3:
+                for (int i = 0; i < n; i++) {
+                    b[i].search();
+                }
+                break;
+            case 4:
+                for (int i = 0; i < n; i++) {
+                    b[i].update();
+                }
+                break;
+            case 5:
+                for (int i = 0; i < n; i++) {
+                    b[i].Delete();
+                }
+                break;
+            case 6:
+                exit(0);
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 6);
+
+    return 0;
 }
