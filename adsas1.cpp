@@ -30,20 +30,20 @@ void lms::display(){
 	cout<<"\n"<<book_id<<"\t"<<price<<"\t"<<title<<"\t"<<author<<"\t"<<pub<<"\t"<<isbn_no<<endl;
 	}
 void lms::search(){
-	int f=0;
-	cout<<"enter book id: ";
-	cin>>book_id;
-	for(i=0;i<n;i++){
-		if(book_id==b[i].book_id){
-			f=1;
-			cout<<"book id found";
-			b[i].display();
-			break;
-		}
-	}
-	if(f==0){
-		cout<<"book id not found";
-	}
+	int search_id, f = 0;
+    cout << "Enter book id: ";
+    cin >> search_id;
+    for (i = 0; i < n; i++) {
+        if (search_id == b[i].book_id) {
+            f = 1;
+            cout << "Book id found";
+            b[i].display();
+            break;
+        }
+    }
+    if (f == 0) {
+        cout << "Book id not found";
+    }
 }
 void lms::update(){
 	cout << "Enter the book id you want to update: ";
