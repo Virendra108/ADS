@@ -13,7 +13,7 @@ class lms{
 
 void lms::accept(){
 	cout<<"enter the book_id,price,title,author,pub,isbn number :"<<endl;
-	cin>>book_id>>price>>title>>auther>>pub>>isbn_no>>;
+	cin>>book_id>>price>>title>>auther>>pub>>isbn_no;
 }
 void lms::display(){
 	cout<<"\n"<<book_id<<"\t"<<price<<"\t"<<title<<"\t"<<auther<<"\t"<<pub<<"\t"<<isbn_no<<endl;
@@ -63,7 +63,7 @@ void lms::Delete(){
 	}
 }
 int main(){
-	int choice;
+	int choice,i;
 	do{
 		cout<<"\n1.accept";
 		cout<<"\n2.display";
@@ -92,10 +92,12 @@ int main(){
 			}
 			case 5:
 			for(i=0;i<n;i++){
-				b[i].delete();
+				b[i].Delete();
 			}
 			case 6:
 			exit;
 			default:
 		}while(choice!=6);
-		}
+	}
+
+}
