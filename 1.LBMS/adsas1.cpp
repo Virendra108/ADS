@@ -2,7 +2,7 @@
 #include <cstring>
 using namespace std;
 class lms{
-	int book_id,price,i,n;
+	int book_id,price;
 	char *title,*author,*pub,*isbn_no;
 	public:
 	void accept();
@@ -11,6 +11,7 @@ class lms{
 	void update();
 	void Delete();
 }b[100];
+int i,n;
 
 void lms::accept(){
     cout << "Enter the book_id, price, title, author, publisher, isbn number: " << endl;
@@ -86,7 +87,7 @@ void lms::Delete(){
     }
 }
 int main(){
-	int choice,i,n=0;
+	int choice,i;
 	do{
 		cout<<"\n1.accept";
 		cout<<"\n2.display";
