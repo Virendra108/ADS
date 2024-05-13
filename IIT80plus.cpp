@@ -2,7 +2,7 @@
 #include <string>
 #include <iomanip>
 using namespace std;
-
+/*another approach is make root node as 80 or 70 then we will be having riight side greater than it. just print the right side.*/
 class Student {
 private:
     int marks;
